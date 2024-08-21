@@ -17,6 +17,7 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
+            position: relative;
         }
         h1, h2 {
             font-family: 'Poppins', sans-serif;
@@ -58,21 +59,22 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #f4a6b7; /* Cambiar a #4b5d43 para verde feliz */
-            width: 50px;
-            height: 50px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            color: #ffffff;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .mood-indicator img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <div class="mood-indicator">
-        🐙 <!-- Puedes usar un emoji o una imagen de un pulpo -->
+    <div class="mood-indicator" onclick="toggleMood()">
+        <img id="pulpo" src="[URL_DE_IMAGEN_DEL_PULPO_FELIZ]" alt="Pulpo de ánimo">
     </div>
     <div class="container">
         <h1>Hola Sarah</h1>
@@ -93,5 +95,22 @@
         </div>
         <button>Enviar</button>
     </div>
+
+    <script>
+        let estadoPulpo = true; // true = feliz, false = enojado
+        function toggleMood() {
+            estadoPulpo = !estadoPulpo;
+            const pulpoImg = document.getElementById('pulpo');
+            if (estadoPulpo) {
+                pulpoImg.src = "[https://github.com/TomDemaria/Sarah/blob/main/pulpo-verde.png]";
+            } else {
+                pulpoImg.src = "[https://github.com/TomDemaria/Sarah/blob/main/pulpo-rosa.png]";
+            }
+            pulpoImg.style.transform = 'scale(0.9)'; // Efecto de contracción
+            setTimeout(() => {
+                pulpoImg.style.transform = 'scale(1)'; // Efecto de expansión
+            }, 150);
+        }
+    </script>
 </body>
 </html>
